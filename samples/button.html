@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<title>ESKV Button Example</title>
+
+<!-- The CSS in the style tag is used to set a black background and maximize available client space for the canvas-->
+<style> 
+    body{
+        background-color: rgb(0, 0, 0);
+        text-align: center;
+    }
+    html, body, canvas {
+    margin: 0 !important;
+    padding: 0 !important;
+    position: absolute;
+    top:0;
+    left:0;
+    }
+</style>
+
+<!-- IMPORTANT: The ESKV App draws to a canvas that must be ID'd as canvas-->
+<canvas id="canvas"></canvas> 
+
+<script type="module">
+    import  {App, Button, Label} from '../lib/eskv.js'; //Import ESKV objects into an eskv namespace
+
+    //Create a new app instance
+    var buttonDemo = new App();
+    //Add widgets by setting the children property of the baseWidget (you can alternatively call addChild)
+    buttonDemo.baseWidget.children = [  
+        //Adds a Button with an on_press property that responds to the buttons press event
+        new Button({text:'Click me', 
+            on_press: (e,v)=>{let label = App.get().findById('label');
+                              [label.text,label.alt_text]=[label.alt_text,label.text]}, 
+            hints:{center_x:0.5,center_y:0.25,w:0.5,h:0.1}}),
+        //Adds a Label
+        new Label({text:'Hello', alt_text:'World', id:'label', hints:{center_x:0.5,center_y:0.75,w:0.5,h:0.1}}) 
+    ]
+    //Start the app
+    buttonDemo.start();
+
+</script>

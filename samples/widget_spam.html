@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<title>ESKV Widget Spam Example</title>
+
+<!-- The CSS in the style tag is used to set a black background and maximize available client space for the canvas-->
+<style> 
+    body{
+        background-color: rgb(0, 0, 0);
+        text-align: center;
+    }
+    html, body, canvas {
+    margin: 0 !important;
+    padding: 0 !important;
+    position: absolute;
+    top:0;
+    left:0;
+    }
+</style>
+
+<!-- IMPORTANT: The ESKV App draws to a canvas that must be ID'd as canvas-->
+<canvas id="canvas"></canvas> 
+
+<script type="module">
+    import  {App, Widget, Button, random, math} from '../lib/eskv.js'; //Import ESKV objects into an eskv namespace
+
+    //Create a new app instance
+    var buttonDemo = new App();
+    //Add widgets by setting the children property of the baseWidget (you can alternatively call addChild)
+    buttonDemo.baseWidget.children = [  
+        //Adds 2 Buttons
+        new Button({text:'Add 10 Widgets', hints:{center_x:0.25,y:0,w:0.4,h:0.1}, id:'button1'}),
+        new Button({text:'Clear', hints:{center_x:0.75,y:0,w:0.4,h:0.1}, id:'button2'}),
+    ]
+    let but1 = buttonDemo.findById('button1');
+    let but2 = buttonDemo.findById('button2');
+    let r = random.randomFloat;
+    but1.on_press = (e,v) => {
+        for(let i=0;i<10;i++) {
+            let x = r(0.1,0.9);
+            let y = r(0.1,0.9)
+            let size = r(1,2);
+            let color = math.colorString([r(), r(), r()]);
+            let w = new Widget({bgColor: color, w:size, h:size, hints: {x:x, y:y}})
+            App.get().baseWidget.addChild(w);
+        }
+    }
+    but2.on_press = (e,v) => {
+        App.get().baseWidget.children = [App.get().findById('button1'),App.get().findById('button2')]
+    }
+    //Start the app
+    buttonDemo.start();
+
+</script>

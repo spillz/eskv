@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<title>Pong Example</title>
+
+<style>
+    body{
+        background-color: rgb(0, 0, 0);
+        text-align: center;
+    }
+    html, body, canvas {
+    margin: 0 !important;
+    padding: 0 !important;
+    position: absolute;
+    top:0;
+    left:0;
+    }
+</style>
+
+<!-- IMPORTANT: The ESKV App draws to a canvas that must be ID'd as canvas-->
+<canvas id="canvas"></canvas>
+
+<!-- The pong application is in a module-type script in the js folder-->
+<script type="module" src="js/pong.js"></script>

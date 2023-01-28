@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<title>ESKV Hello World Example</title>
+
+<!-- The CSS in the style tag is used to set a black background and maximize available client space for the canvas-->
+<style> 
+    body{
+        background-color: rgb(0, 0, 0);
+        text-align: center;
+    }
+    html, body, canvas {
+    margin: 0 !important;
+    padding: 0 !important;
+    position: absolute;
+    top:0;
+    left:0;
+    }
+</style>
+
+<!-- IMPORTANT: The ESKV App draws to a canvas that must be ID'd as canvas-->
+<canvas id="canvas"></canvas> 
+
+<script type="module">
+    import  * as eskv from '../lib/eskv.js'; //Import ESKV objects into an eskv namespace
+
+    //Create a new app instance
+    var hw = new eskv.App();
+    //Add widgets by setting the children property of the baseWidget (you can alternatively call addChild)
+    hw.baseWidget.children = [  
+    //Adds a label with a text property and relative (to parent) position hint
+        new eskv.Label({text:'Hello, World!', hints:{center_x:0.5,center_y:0.5,w:0.5,h:0.1}}) 
+    ]
+    //Start the app
+    hw.start();
+
+</script>
