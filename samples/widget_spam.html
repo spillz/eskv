@@ -27,14 +27,14 @@
     //Add widgets by setting the children property of the baseWidget (you can alternatively call addChild)
     buttonDemo.baseWidget.children = [  
         //Adds 2 Buttons
-        new Button({text:'Add 10 Widgets', hints:{center_x:0.25,y:0,w:0.4,h:0.1}, id:'button1'}),
-        new Button({text:'Clear', hints:{center_x:0.75,y:0,w:0.4,h:0.1}, id:'button2'}),
+        new Button({text:'Add 100 Widgets', wrap:true, hints:{center_x:0.25,y:0,w:0.4,h:0.1}, id:'button1'}),
+        new Button({text:'Clear', wrap:true, hints:{center_x:0.75,y:0,w:0.4,h:0.1}, id:'button2'}),
     ]
     let but1 = buttonDemo.findById('button1');
     let but2 = buttonDemo.findById('button2');
     let r = random.randomFloat;
     but1.on_press = (e,v) => {
-        for(let i=0;i<10;i++) {
+        for(let i=0;i<100;i++) {
             let x = r(0.1,0.9);
             let y = r(0.1,0.9)
             let size = r(1,2);

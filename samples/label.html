@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<title>ESKV Label Example</title>
+
+<!-- The CSS in the style tag is used to set a black background and maximize available client space for the canvas-->
+<style> 
+    body{
+        background-color: rgb(0, 0, 0);
+        text-align: center;
+    }
+    html, body, canvas {
+    margin: 0 !important;
+    padding: 0 !important;
+    position: absolute;
+    top:0;
+    left:0;
+    }
+</style>
+
+<!-- IMPORTANT: The ESKV App draws to a canvas that must be ID'd as canvas-->
+<canvas id="canvas"></canvas> 
+
+<script type="module">
+    import  {App, Button, Label} from '../lib/eskv.js'; //Import ESKV objects into an eskv namespace
+
+    //Create a new app instance
+    var labelDemo = new App();
+    var lorem = `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
+fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa
+qui officia deserunt mollit anim id est laborum.`.replaceAll('\n',' ');
+
+    //Add widgets by setting the children property of the baseWidget (you can alternatively call addChild)
+    labelDemo.baseWidget.children = [  
+        //Adds a Header
+        new Label({text:'Lorem Ipsum', bgColor:'#CC7722', hints:{center_x:0.5,y:0,w:0.5,h:0.15}}),
+        //Adds a left caption
+        new Label({text:'Lorem', outlineColor:'gray', color:'yellow', align:'left', valign:'top', hints:{x:0,y:0,w:0.1,h:1}}),
+        //Adds a right caption
+        new Label({text:'Ipsum', outlineColor:'gray', color:'orange', align:'right', valign:'bottom', hints:{right:1,y:0,w:0.1,h:1}}),
+        //A body of wrapped text, centered
+        new Label({text:lorem, outlineColor:'gray', fontName:'Script', valign:'middle', align:'center', wrap:true, hints:{center_x:0.5,y:0.2,w:0.7,h:0.7}}),
+    ]
+
+
+
+    //Start the app
+    labelDemo.start();
+
+</script>
