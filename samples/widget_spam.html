@@ -20,7 +20,20 @@
 <canvas id="canvas"></canvas> 
 
 <script type="module">
-    import  {App, Widget, Button, random, math} from '../lib/eskv.js'; //Import ESKV objects
+    import  {App, Widget, Vec2, Button, random, math} from '../lib/eskv.js'; //Import ESKV objects
+
+    //We'll create a moving widget by augmenting the update loop to move widgets with fixed velocity
+    class MovingWidget extends Widget {
+        vel = new Vec2([0,0]); //add a velocity property
+        update(millis) {
+            super.update(millis); //make sure to call super or the widget will be broken
+            // Now move the widget and bounce off walls defined by the parent.
+            this.x=math.clamp(this.x+this.vel.x*millis, this.parent.x, this.parent.right-this.w);
+            this.y=math.clamp(this.y+this.vel.y*millis, this.parent.y, this.parent.bottom-this.h);
+            if(this.x==this.parent.x || this.x==this.parent.right-this.w) this.vel.x*=-1;
+            if(this.y==this.parent.y || this.y==this.parent.bottom-this.h) this.vel.y*=-1;
+        }
+    }
 
     //Create a new app instance
     var buttonDemo = new App();
@@ -29,9 +42,11 @@
         //Adds 2 Buttons
         new Button({text:'Add 100 Widgets', wrap:true, hints:{center_x:0.25,y:0,w:0.4,h:0.1}, id:'button1'}),
         new Button({text:'Clear', wrap:true, hints:{center_x:0.75,y:0,w:0.4,h:0.1}, id:'button2'}),
+        new Widget({hints:{center_x:0.5,y:0.1,w:1,h:0.9}, id:'frame'}),
     ]
     let but1 = buttonDemo.findById('button1');
     let but2 = buttonDemo.findById('button2');
+    let frame = buttonDemo.findById('frame');
     let r = random.randomFloat;
     but1.on_press = (e,v) => {
         for(let i=0;i<100;i++) {
@@ -39,12 +54,15 @@
             let y = r(0.1,0.9)
             let size = r(1,2);
             let color = math.colorString([r(), r(), r()]);
-            let w = new Widget({bgColor: color, w:size, h:size, hints: {x:x, y:y}})
-            App.get().baseWidget.addChild(w);
+            let w = new MovingWidget({bgColor: color, w:size, h:size, hints: {x:x, y:y}})
+            let dx = Math.random()>0.5?Math.random()*0.5+0.5:-Math.random()*0.5-0.5
+            let dy = Math.random()>0.5?Math.random()*0.25+0.25:-Math.random()*0.25-0.25
+            w.vel = new Vec2([dx,dy]).scale(0.005);
+            frame.addChild(w);
         }
     }
     but2.on_press = (e,v) => {
-        App.get().baseWidget.children = [App.get().findById('button1'),App.get().findById('button2')]
+        frame.children = [App.get().findById('button1'),App.get().findById('button2')]
     }
     //Start the app
     buttonDemo.start();
