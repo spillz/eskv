@@ -20,7 +20,7 @@
 <canvas id="canvas"></canvas> 
 
 <script type="module">
-    import  {App, Button, Label} from '../lib/eskv.js'; //Import ESKV objects into an eskv namespace
+    import  {App, BoxLayout, CheckBox, Label} from '../lib/eskv.js'; //Import ESKV objects
 
     //Create a new app instance
     var labelDemo = new App();
@@ -40,11 +40,18 @@ qui officia deserunt mollit anim id est laborum.`.replaceAll('\n',' ');
         //Adds a right caption
         new Label({text:'Ipsum', outlineColor:'gray', color:'orange', align:'right', valign:'bottom', hints:{right:1,y:0,w:0.1,h:1}}),
         //A body of wrapped text, centered
-        new Label({text:lorem, outlineColor:'gray', fontName:'Script', valign:'middle', align:'center', wrap:true, hints:{center_x:0.5,y:0.2,w:0.7,h:0.7}}),
+        new Label({text:lorem, outlineColor:'gray', fontName:'Script', valign:'middle', wrap:true, hints:{center_x:0.5,y:0.2,w:0.7,h:0.7},
+            align: (left, center, right)=>left.check?'left':(center.check?'center':'right') }),
+        new BoxLayout({orientation:'horizontal', spacingX:0.2, hints: {center_x:0.5,center_y:0.95, w:0.5,h:0.05}, children: [
+            new Label({text:'Align:', align:'left', hints:{h:1}}),
+            new CheckBox({id:'left', check:true, group:'align', hints:{w_from_h:1, h:1, w:null}}),
+            new Label({text:'left', align:'left', hints:{h:1}}),
+            new CheckBox({id:'center', group:'align', hints:{w_from_h:1, h:1, w:null}}),
+            new Label({text:'center', align:'left', hints:{h:1}}),
+            new CheckBox({id:'right', group:'align', hints:{w_from_h:1, h:1, w:null}}),
+            new Label({text:'right', align:'left', hints:{h:1}}),
+        ]})
     ]
-
-
-
     //Start the app
     labelDemo.start();
 
