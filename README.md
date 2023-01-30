@@ -6,9 +6,9 @@ build apps with rich user experiences that consolidate mouse and touch friendly
 controls into one simple interface and, unlike Kivy, run directly in the browser on 
 most modern devices.
 
-Try samples on my [GitHub pages](https://spillz.github.io/eskv).
+Try the samples on my [GitHub pages](https://spillz.github.io/eskv).
 
-To test the samples locally
+To test the samples locally, open a terminal and type:
 
 ```
 git clone https://github.com/spillz/eskv
