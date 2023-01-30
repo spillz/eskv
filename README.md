@@ -16,5 +16,5 @@ cd eskv
 python3 -m http.server
 ```
 
-Open 0.0.0.0:8000/index.html in your browser of choice. If you make changes to module code, 
+Open `0.0.0.0:8000/index.html` in your browser of choice. If you make changes to module code, 
 you may need to clear the browser's cache to see the updates.
