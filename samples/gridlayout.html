@@ -32,8 +32,8 @@
         new Button({text:'Vertical', id:'butorient', hints:{center_x:0.8,center_y:0.05,w:0.25,h:0.05} }),
         new Label({hints:{right:0.9,center_y:0.125,w:0.15,h:0.05},
                 text:(dimension, gridlayout)=>gridlayout.orientation=='horizontal'?
-                    dimension.value.toString()+' row'+(dimension.value==1?'':'s') :
-                    dimension.value.toString()+' column'+(dimension.value==1?'':'s')
+                    dimension.value.toString()+' column'+(dimension.value==1?'':'s') :
+                    dimension.value.toString()+' row'+(dimension.value==1?'':'s')
             }),
         new Slider({id:'dimension', orientation:'horizontal', min:1, max:10, step:1, value:1, hints:{right:0.9,center_y:0.15,w:0.15,h:0.05}}),
         new Label({text:'padding x', hints:{x:0.1,center_y:0.125,w:0.15,h:0.05}}),
