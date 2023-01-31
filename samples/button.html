@@ -27,10 +27,12 @@
     //Add widgets by setting the children property of the baseWidget (you can alternatively call addChild)
     buttonDemo.baseWidget.children = [  
         //Adds a Button with an on_press property that responds to the buttons press event
-        new Button({text:'Click me', 
-            on_press: (e,v)=>{let label = App.get().findById('label');
-                              [label.text,label.alt_text]=[label.alt_text,label.text]}, 
-            hints:{center_x:0.5,center_y:0.25,w:0.5,h:0.1}}),
+        new Button({text:'Click me', hints:{center_x:0.5,center_y:0.5,w:0.5,h:0.1},
+            on_press: (e,v)=>{
+                let label = App.get().findById('label');
+                [label.text,label.alt_text]=[label.alt_text,label.text]}, 
+            }),
+        new Button({text:'I am inactive', disable:true, hints:{center_x:0.5,center_y:0.25,w:0.5,h:0.1}}),
         //Adds a Label
         new Label({text:'Hello', alt_text:'World', id:'label', hints:{center_x:0.5,center_y:0.75,w:0.5,h:0.1}}) 
     ]
