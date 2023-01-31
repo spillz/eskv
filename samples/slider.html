@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<title>ESKV Slider Example</title>
+
+<!-- The CSS in the style tag is used to set a black background and maximize available client space for the canvas-->
+<style> 
+    body{
+        background-color: rgb(0, 0, 0);
+        text-align: center;
+    }
+    html, body, canvas {
+    margin: 0 !important;
+    padding: 0 !important;
+    position: absolute;
+    top:0;
+    left:0;
+    }
+</style>
+
+<!-- IMPORTANT: The ESKV App draws to a canvas that must be ID'd as canvas-->
+<canvas id="canvas"></canvas> 
+
+<script type="module">
+    import  {App, Slider, Label} from '../lib/eskv.js'; //Import ESKV objects
+
+    //Create a new app instance
+    var slDemo = new App();
+    let checkHints = {h:0.333, w_from_h:1, w:null};
+    //Add widgets by setting the children property of the baseWidget (you can alternatively call addChild)
+    slDemo.baseWidget.children = [  
+        new Label({text:'Sliders', fontName:'serif', align:'center', 
+                    hints:{center_x:0.5, center_y:0.1, w:1, h:0.15} }),
+        //horizontal continuous
+        new Slider({orientation:'horizontal', id:'s1', hints:{center_x:0.5, y: 0.2, h:0.05,w:0.2}}),
+        new Label({text: (s1)=>s1.value.toFixed(2), align:'left', hints:{x:0.6, y: 0.2, h:0.05,w:0.2}}),
+        //horizontal discrete
+        new Slider({orientation:'horizontal', step:0.2, id:'s2', hints:{center_x:0.5, y: 0.4, h:0.05,w:0.2}}),
+        new Label({text: (s2)=>s2.value.toFixed(1), align:'left', hints:{x:0.6, y: 0.4, h:0.05,w:0.2}}),
+        //horizontal disable
+        new Slider({orientation:'horizontal', value:0.7, disable:true, hints:{center_x:0.5, y: 0.6, h:0.05,w:0.2}}),
+        //horizontal continuous
+        new Slider({orientation:'vertical', id:'s3', hints:{center_x:0.25, y: 0.7, h:0.2,w:0.2}}),
+        new Label({text: (s3)=>s3.value.toFixed(2), hints:{center_x:0.25, y: 0.9, h:0.05,w:0.2}}),
+        //horizontal discrete
+        new Slider({orientation:'vertical', step:0.1, id:'s4', hints:{center_x:0.5, y: 0.7, h:0.2,w:0.2}}),
+        new Label({text: (s4)=>s4.value.toFixed(1), hints:{center_x:0.5, y: 0.9, h:0.05,w:0.2}}),
+        //horizontal disable
+        new Slider({orientation:'vertical', value:0.5, disable:true, hints:{center_x:0.75, y: 0.7, h:0.2,w:0.2}}),
+    ]
+    //Start the app
+    slDemo.start();
+
+</script>
