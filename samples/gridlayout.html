@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<title>ESKV GridLayout Example</title>
+
+<!-- The CSS in the style tag is used to set a black background and maximize available client space for the canvas-->
+<style> 
+    body{
+        background-color: rgb(0, 0, 0);
+        text-align: center;
+    }
+    html, body, canvas {
+    margin: 0 !important;
+    padding: 0 !important;
+    position: absolute;
+    top:0;
+    left:0;
+    }
+</style>
+
+<!-- IMPORTANT: The ESKV App draws to a canvas that must be ID'd as canvas-->
+<canvas id="canvas"></canvas> 
+
+<script type="module">
+    import  {App, Label, GridLayout, Button, Slider, random, math} from '../lib/eskv.js'; //Import ESKV objects
+
+    //Create a new app instance
+    var glDemo = new App();
+    //Add widgets by setting the children property of the baseWidget (you can alternatively call addChild)
+    glDemo.baseWidget.children = [  
+        //Adds 2 Buttons
+        new Button({text:'Add Widget', id:'butadd', hints:{center_x:0.2,center_y:0.05,w:0.25,h:0.05}}),
+        new Button({text:'Clear', id:'butclear', hints:{center_x:0.5,center_y:0.05,w:0.25,h:0.05}}),
+        new Button({text:'Vertical', id:'butorient', hints:{center_x:0.8,center_y:0.05,w:0.25,h:0.05} }),
+        new Label({hints:{right:0.9,center_y:0.125,w:0.15,h:0.05},
+                text:(dimension, gridlayout)=>gridlayout.orientation=='horizontal'?
+                    dimension.value.toString()+' row'+(dimension.value==1?'':'s') :
+                    dimension.value.toString()+' column'+(dimension.value==1?'':'s')
+            }),
+        new Slider({id:'dimension', orientation:'horizontal', min:1, max:10, step:1, value:1, hints:{right:0.9,center_y:0.15,w:0.15,h:0.05}}),
+        new Label({text:'padding x', hints:{x:0.1,center_y:0.125,w:0.15,h:0.05}}),
+        new Slider({id:'padx', orientation:'horizontal', min:0.0, max:2.0, hints:{x:0.1,center_y:0.15,w:0.15,h:0.05}}),
+        new Label({text:'pad. y', hints:{center_x:0.075,center_y:0.2,w:0.1,h:0.05}}),
+        new Slider({id:'pady', orientation:'vertical', min:0.0, max:2.0, hints:{x:0.05,y:0.2,w:0.05,h:0.2}}),
+        new Label({text:'spacing x', hints:{center_x:0.5,center_y:0.125,w:0.15,h:0.05}}),
+        new Slider({id:'spacerx', orientation:'horizontal', min:0.0, max:2.0, hints:{center_x:0.5,center_y:0.15,w:0.15,h:0.05}}),
+        new Label({text:'spc. y', hints:{center_x:0.075,center_y:0.6,w:0.1,h:0.05}}),
+        new Slider({id:'spacery', orientation:'vertical', min:0.0, max:2.0, hints:{x:0.05,center_y:0.7,w:0.05,h:0.2}}),
+        new GridLayout({orientation:'vertical', outlineColor:'gray', id:'gridlayout', hints:{center_x:0.5,y:0.2,w:0.8,h:0.8},
+                //wire padding and spacing to the sliders
+                paddingX:(padx)=>padx.value, 
+                paddingY:(pady)=>pady.value, 
+                spacingX:(spacerx)=>spacerx.value, 
+                spacingY:(spacery)=>spacery.value, 
+                numX:(dimension)=>dimension.value,
+                numY:(dimension)=>dimension.value
+            }),
+    ];
+    let butadd = glDemo.findById('butadd');
+    let butclear = glDemo.findById('butclear');
+    let butorient = glDemo.findById('butorient');
+    let gl = glDemo.findById('gridlayout');
+
+    //Wire up the buttons to make adjustments to the gridlayout
+    butadd.on_press = (e,v)=> {
+        let color = math.colorString(math.MathArray.asRandomFloats(3,0,0.9));
+        let w = new Label({text:'Label_'+gl.children.length.toString(), bgColor:color});
+        gl.addChild(w);
+    }
+
+    butclear.on_press = (e,v)=> {
+        gl.children = [];
+    }
+
+    butorient.on_press = (e,v)=>{
+        if(gl.orientation == 'vertical') {
+            gl.orientation = 'horizontal';
+            butorient.text = 'Horizontal';
+        } else {
+            gl.orientation = 'vertical';
+            butorient.text = 'Vertical';
+        }
+    }
+
+    //Start the app
+    glDemo.start();
+
+</script>
