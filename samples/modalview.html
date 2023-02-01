@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<title>ESKV ModalView Example</title>
+
+<!-- The CSS in the style tag is used to set a black background and maximize available client space for the canvas-->
+<style> 
+    body{
+        background-color: rgb(0, 0, 0);
+        text-align: center;
+    }
+    html, body, canvas {
+    margin: 0 !important;
+    padding: 0 !important;
+    position: absolute;
+    top:0;
+    left:0;
+    }
+</style>
+
+<!-- IMPORTANT: The ESKV App draws to a canvas that must be ID'd as canvas-->
+<canvas id="canvas"></canvas> 
+
+<script type="module">
+    import  {App, ModalView, BoxLayout, Button, Label} from '../lib/eskv.js'; //Import ESKV objects
+
+    //Create a new app instance
+    var mvDemo = new App();
+    //Add widgets by setting the children property of the baseWidget (you can alternatively call baseWidget.addChild)
+    var mv = new ModalView({id: 'mv', closeOnTouchOutside:false, hints:{center_x:0.5,center_y:0.5,w:0.7,h:0.2}, children: [
+        new BoxLayout({hints:{center_x:0.5,center_y:0.5,w:1,h:1}, children: [
+            new Label({text:'Modal Popup', hints:{center_x:0.5,w:1,h:0.5}}),
+            new Button({text:'Close', hints:{center_x:0.5,w:0.5,h:0.5},
+                on_press:(e,v)=>App.get().findById('mv').close()}),
+        ]})
+    ]})
+    mvDemo.baseWidget.children = [  
+        //Adds a Button with an on_press property that responds to the buttons press event
+        new Button({text:'Click me', hints:{center_x:0.5,center_y:0.75,w:0.5,h:0.1},
+            on_press: (e,v)=>mv.popup()
+            }),
+        //Adds a Label
+        new Label({text:'Hello, World', id:'label', hints:{center_x:0.5,center_y:0.25,w:0.5,h:0.1}}) 
+    ]
+    //Start the app
+    mvDemo.start();
+
+</script>
