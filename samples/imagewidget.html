@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<title>ESKV ImageWidget Example</title>
+
+<!-- The CSS in the style tag is used to set a black background and maximize available client space for the canvas-->
+<style> 
+    body{
+        background-color: rgb(0, 0, 0);
+        text-align: center;
+    }
+    html, body, canvas {
+    margin: 0 !important;
+    padding: 0 !important;
+    position: absolute;
+    top:0;
+    left:0;
+    }
+</style>
+
+<!-- IMPORTANT: The ESKV App draws to a canvas that must be ID'd as canvas-->
+<canvas id="canvas"></canvas> 
+
+<script type="module">
+    import  {App, CheckBox, ImageWidget, Slider, Label} from '../lib/eskv.js'; //Import ESKV objects
+
+    //Create a new app instance
+    var imageDemo = new App();
+    //Add widgets by setting the children property of the baseWidget (you can alternatively call baseWidget.addChild)
+    imageDemo.baseWidget.children = [  
+        //Adds a Button with an on_press property that responds to the buttons press event
+        new Label({text:'Image example', fontName:'Serif', hints:{center_x:0.5,center_y:0.05,w:1.0,h:0.1}}),
+        new ImageWidget({src:'./images/iss.jpg', outlineColor:'white', id:'image', hints:{center_x:0.5, center_y:0.5, w:0.8, h:0.7},
+            angle: (angle)=>angle.value, lockAspect: (stretch)=>!stretch.check, antiAlias: (antialias)=>antialias.check 
+        }),
+
+        //Stretch toggle
+        new Label({text:'stretch', align:'right', hints:{x:0,center_y:0.9,w:0.2,h:0.05}}),
+        new CheckBox({id:'stretch', check:false, hints:{x:0.2,center_y:0.9,w:null,h:0.05,w_from_h:1}}),
+
+        //Antialias toggle
+        new Label({text:'anti-alias', align:'left', hints:{x:0.8,center_y:0.9,w:0.2,h:0.05}}),
+        new CheckBox({id:'antialias', check:true, min:0.0, max:2*Math.PI, hints:{right:0.8,center_y:0.9,w:null,h:0.05,w_from_h:1}}),
+
+        //Scale the image (slider)
+        new Label({text:'scale', align:'right', hints:{x:0,center_y:0.95,w:0.2,h:0.05}}),
+        new Slider({min:0.01, max:10.0, value:0.8, hints:{x:0.2,center_y:0.95,w:0.3,h:0.05},
+            on_value: (e,v)=>{
+                let img = App.get().findById('image');
+                img.hints.w = v;
+                img.hints.h = v;
+                img.parent._needsLayout = true; //forces a redraw
+            }
+        }),
+        //Angle of the image (slider)
+        new Label({text:'angle', align:'left', hints:{x:0.8,center_y:0.95,w:0.2,h:0.05}}),
+        new Slider({id:'angle',min:0.0, max:2*Math.PI, hints:{x:0.5,center_y:0.95,w:0.3,h:0.05}}),
+
+
+    ]
+    //Start the app
+    imageDemo.start();
+
+</script>

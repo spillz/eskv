@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<title>ESKV TextInput Example</title>
+
+<!-- The CSS in the style tag is used to set a black background and maximize available 
+    client space for the canvas and add custom div styling to integrate DOM text input elements
+    as an overlay to the canvas-->
+<style> 
+    body{
+        background-color: rgb(0, 0, 0);
+        text-align: center;
+    }
+    html, body, canvas {
+    margin: 0 !important;
+    padding: 0 !important;
+    position: absolute;
+    top:0;
+    left:0;
+    }
+    .eskvdiv { position:absolute }
+    .eskvdiv > * { position:absolute }
+</style>
+
+<!-- IMPORTANT: The ESKV App draws to a canvas that must be ID'd as canvas-->
+<div class="eskvdiv" id="eskvapp">
+    <canvas id="canvas"></canvas>
+</div>
+
+<script type="module">
+    import  {App, BoxLayout, TextInput, CheckBox, Label} from '../lib/eskv.js'; //Import ESKV objects
+
+    //Create a new app instance
+    var tiDemo = new App();
+
+    //Add widgets by setting the children property of the baseWidget (you can alternatively call addChild)
+    tiDemo.baseWidget.children = [  
+        //Adds a Header
+        new Label({text:'Text Inputs', hints:{center_x:0.5,center_y:0.25,w:0.5,h:0.1}}),
+        //Adds a single line TextInput
+        new TextInput({text:'Touch to enter some text', bgColor:'#CC7722', hints:{center_x:0.5,center_y:0.5,w:0.5,h:0.1}}),
+        //Adds a multiline TextInput
+        new TextInput({text:'Touch to edit\nmultiline text', bgColor:'#002277',wrap:true, hints:{center_x:0.5,center_y:0.75,w:0.5,h:0.15}}),
+    ];
+    //Start the app
+    tiDemo.start();
+
+</script>
