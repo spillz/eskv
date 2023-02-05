@@ -34,11 +34,11 @@
 
         //Stretch toggle
         new Label({text:'stretch', align:'right', hints:{x:0,center_y:0.9,w:0.2,h:0.05}}),
-        new CheckBox({id:'stretch', check:false, hints:{x:0.2,center_y:0.9,w:null,h:0.05,w_from_h:1}}),
+        new CheckBox({id:'stretch', check:false, hints:{x:0.2,center_y:0.9,h:0.05,w:'1wh'}}),
 
         //Antialias toggle
         new Label({text:'anti-alias', align:'left', hints:{x:0.8,center_y:0.9,w:0.2,h:0.05}}),
-        new CheckBox({id:'antialias', check:true, min:0.0, max:2*Math.PI, hints:{right:0.8,center_y:0.9,w:null,h:0.05,w_from_h:1}}),
+        new CheckBox({id:'antialias', check:true, min:0.0, max:2*Math.PI, hints:{right:0.8,center_y:0.9,h:0.05,w:'1wh'}}),
 
         //Scale the image (slider)
         new Label({text:'scale', align:'right', hints:{x:0,center_y:0.95,w:0.2,h:0.05}}),

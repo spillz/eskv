@@ -44,11 +44,11 @@ qui officia deserunt mollit anim id est laborum.`.replaceAll('\n',' ');
             align: (left, center, right)=>left.check?'left':(center.check?'center':'right') }),
         new BoxLayout({orientation:'horizontal', spacingX:0.2, hints: {center_x:0.5,center_y:0.95, w:0.5,h:0.05}, children: [
             new Label({text:'Align:', align:'left', hints:{h:1}}),
-            new CheckBox({id:'left', check:true, group:'align', hints:{w_from_h:1, h:1, w:null}}),
+            new CheckBox({id:'left', check:true, group:'align', hints:{h:1, w:'1wh'}}),
             new Label({text:'left', align:'left', hints:{h:1}}),
-            new CheckBox({id:'center', group:'align', hints:{w_from_h:1, h:1, w:null}}),
+            new CheckBox({id:'center', group:'align', hints:{h:1, w:'1wh'}}),
             new Label({text:'center', align:'left', hints:{h:1}}),
-            new CheckBox({id:'right', group:'align', hints:{w_from_h:1, h:1, w:null}}),
+            new CheckBox({id:'right', group:'align', hints:{h:1, w:'1wh'}}),
             new Label({text:'right', align:'left', hints:{h:1}}),
         ]})
     ]
