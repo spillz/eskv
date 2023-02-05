@@ -146,20 +146,26 @@ from The Bulletin, April 26, 1890,
 
     //Create a new app instance
     var svDemo = new App();
+    svDemo.prefDimW = 16;
+    svDemo.prefDimH = 16;
 
     //Add widgets by setting the children property of the baseWidget (you can alternatively call addChild)
     svDemo.baseWidget.children = [  
-        //Adds a Header
-        new Label({text:'Clancy of the Overflow\nby Banjo Paterson', wrap:true, fontName:'Serif', font_size:1.3, hints:{center_x:0.5,y:0,w:0.5,h:0.2}}),
-        new ScrollView({id:'sv', uiZoom: (zoom)=>zoom.check, scrollW:(zoom)=>zoom.check, 
-            hints: {center_x:0.5,y:0.2,w:1,h:0.7},  children: [
-            //A body of wrapped text, centered, with h null, the label will stretch in size ot fit the specified fontSize
-            new Label({text:clancy, fontName:'Serif', align: 'center', valign:'top', wrap:true, fontSize:0.85, hints:{x:0,y:0,w:1,h:null}}),
-        ]}),
-        new BoxLayout({orientation:'horizontal', spacingX:0.2, hints: {center_x:0.5,center_y:0.95, h:0.05, w:'4wh'}, children: [
-            new Label({text:'Zoom:', align:'left', hints:{h:1}}),
-            new CheckBox({id:'zoom', check:false, hints:{center_y:0.5, h:0.5, w:'4wh'},
-                on_check: (e,v)=>{App.get().findById('sv').setZoom(1)}}),
+        new BoxLayout({orientation: 'vertical', hints: {x:0,y:0,w:1,h:1}, children: [
+            //Adds a Header
+            new Label({text:'Clancy of the Overflow\nby Banjo Paterson', wrap:true, fontName:'Serif', fontSize:1.3, hints:{center_x:0.5,y:0,w:0.5,h:null}}),
+            //Adds a Scrollview
+            new ScrollView({id:'sv', uiZoom: (zoom)=>zoom.check, scrollW:(zoom)=>zoom.check, 
+                hints: {center_x:0.5,w:1},  children: [
+                //A body of wrapped text, centered, with h null, the label will stretch in size ot fit the specified fontSize
+                new Label({text:clancy, fontName:'Serif', align: 'center', valign:'top', wrap:true, fontSize:0.85, hints:{x:0,y:0,w:1,h:null}}),
+            ]}),
+            // Adds a label with checkbox to enable/disable zoom behavior
+            new BoxLayout({orientation:'horizontal', hints: {center_x:0.5, h:'1.0', w:'4wh'}, children: [
+                new Label({text:'Zoom:', align:'left'}),
+                new CheckBox({id:'zoom', check:false, hints:{center_y:0.5, h:1, w:'1wh'},
+                    on_check: (e,v)=>{App.get().findById('sv').setZoom(1)}}),
+            ]})
         ]})
     ]
     //Start the app
