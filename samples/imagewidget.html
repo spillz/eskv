@@ -30,19 +30,16 @@
         new Label({text:'Image example', fontName:'Serif', hints:{center_x:0.5,center_y:0.05,w:1.0,h:0.1}}),
         new ScrollView({hints:{x:0.1, y:0.1, w:0.8, h:0.8}, children: [
             new ImageWidget({src:'./images/iss.jpg', outlineColor:'white', id:'image', hints:{w:null, h:null},
-            angle: (angle)=>angle.value, lockAspect: (stretch)=>!stretch.check, antiAlias: (antialias)=>antialias.check })
+            angle: (angle)=>angle.value, antiAlias: (antialias)=>antialias.check })
         ]}),
 
         new BoxLayout({ orientation:'horizontal', hints:{x:0, center_y:0.95, w:1,h:0.05}, children:[
-            //Stretch toggle
-            new Label({text:'stretch', align:'right', hints:{right:0.2,center_y:0.95,w:0.15,h:1}}),
-            new CheckBox({id:'stretch', check:false, hints:{x:0.2,center_y:0.95,h:0.05,w:'1wh',h:1}}),
             //Antialias toggle
             new Label({text:'anti-alias', align:'right', hints:{right:0.4,center_y:0.95,w:0.3,h:1}}),
             new CheckBox({id:'antialias', check:true, min:0.0, max:2*Math.PI, hints:{x:0.4,center_y:0.95,h:1,w:'1wh'}}),
             //Angle of the image (slider)
-            new Label({text:'angle', align:'right', hints:{center_y:0.95,w:0.2,h:1}}),
             new Slider({id:'angle',min:0.0, max:2*Math.PI, hints:{center_y:0.95,h:1}}),
+            new Label({text:'angle', align:'left', hints:{center_y:0.95,w:0.2,h:1}}),
         ]}),
 
     ]
