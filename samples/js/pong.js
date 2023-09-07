@@ -1,15 +1,20 @@
+//@ts-check
+
 import  {App, Widget, Label, Vec2, math} from '../../lib/eskv.js'; //Import ESKV objects into an eskv namespace
 
-class Pong extends App { //The pong Canvas application
-    //In ESKV, Apps are singletons that run in a canvas, which is stretched to the 
-    //browser window dimensions as much as possible. This setup is a work-in-progress that 
-    //needs to be simplified and adapted to other use cases.
-    //The App subclass specifies a minimum logical size in prefDimW and prefDimH properties.
-    //After pong.start() is called in index.html, the actual logical size 
-    //will be populated in dimW and dimH representing size of the window in the native 
-    //units of the app. That will then be used to set geometry for widgets that are 
-    //added to the App. There is also an associated tileSize representing the number of 
-    //physical pixels per logical units. 
+/**
+ * The pong ESKV App.
+ * In ESKV, Apps are singletons that display in a canvas, which is stretched to the 
+ * browser window dimensions as much as possible. This setup is a work-in-progress that 
+ * needs to be simplified and adapted to other use cases.
+ * The App subclass specifies a minimum logical size in prefDimW and prefDimH properties.
+ * After pong.start() is called in index.html, the actual logical size 
+ * will be populated in dimW and dimH representing size of the window in the native 
+ * units of the app. That will then be used to set geometry for widgets that are 
+ * added to the App. There is also an associated tileSize representing the number of 
+ * physical pixels per logical units. 
+ */
+class Pong extends App { 
     prefDimW = 20; //preferred logical width
     prefDimH = 10; //preferred logical height
     exactDimensions = true;  //prefDimW and prefDimH will be used as dimW and dimH 
@@ -30,9 +35,11 @@ class Pong extends App { //The pong Canvas application
 }
 
 class Ball extends Widget {
-    vel = null; //velocity property
+    vel = new Vec2([0,0]); //velocity property
+    stopped = true;
     draw() { //drawing with native 
         let ctx = App.get().ctx; //the canvas context object is saved in the ctx property. Note that App is a singleton class
+        if(!ctx) return;
         ctx.fillStyle = 'yellow';
         ctx.beginPath();
         ctx.arc(this.center_x, this.center_y, this.w/2, 0, 2*Math.PI);
@@ -47,6 +54,7 @@ class Ball extends Widget {
         }
         let p1 = App.get().findById('paddle1');
         let p2 = App.get().findById('paddle2');
+        if(!p1 || !p2 || !this.parent) return;
         this.x += this.vel[0]*millis;
         this.y += this.vel[1]*millis;
         //deflect if hit by paddle
@@ -64,16 +72,19 @@ class Ball extends Widget {
         }
         //score player 2 and reset at left edge
         if(this.x<this.parent.x) {
+            // @ts-ignore
             App.get().findById('score').score2 += 1;
             this.reset();
         }
         //score player 1 and reset at right edge
         if(this.right>this.parent.right) {
+            // @ts-ignore
             App.get().findById('score').score1 += 1;
             this.reset();
         }
     }
     reset() { //set the ball in the center of the playfield with random velocity
+        if(this.parent===null) return;
         this.center_x = this.parent.center_x;
         this.center_y = this.parent.center_y;
         let dx = Math.random()>0.5?Math.random()*0.5+0.5:-Math.random()*0.5-0.5
@@ -88,14 +99,17 @@ class Paddle extends Widget {
         if(this.rect.scale(5).collide(touch.rect)) { //touch movement of the paddle is allowed anywhere in the vicinity of the paddle
             this.lastTouch = touch;
         }
+        return false;
     }
     on_touch_move(event, touch) {
         if(this.rect.scale(5).collide(touch.rect)) {
-            if(this.lastTouch!=null) {
+            if(this.lastTouch!==null) {
+                // @ts-ignore
                 this.y += touch.y - this.lastTouch.y;
             }
             this.lastTouch = touch;
         }
+        return false;
     }
 }
 

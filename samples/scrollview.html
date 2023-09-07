@@ -164,7 +164,7 @@ from The Bulletin, April 26, 1890,
             new BoxLayout({orientation:'horizontal', hints: {center_x:0.5, h:'1.0', w:'4wh'}, children: [
                 new Label({text:'Zoom:', align:'left'}),
                 new CheckBox({id:'zoom', check:false, hints:{center_y:0.5, h:1, w:'1wh'},
-                    on_check: (e,v)=>{App.get().findById('sv').setZoom(1)}}),
+                    on_check: (e,v)=>{App.get().findById('sv').zoom = 1}}),
             ]})
         ]})
     ]
