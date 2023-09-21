@@ -49,7 +49,7 @@ class Ball extends Widget {
         //all widgets have an update loop that you can override 
         //(rarely needed in most apps) but definitely call super
         super.update(millis);
-        if(this.vel==null) {
+        if(this.vel.abs().sum()===0) {
             this.reset();
         }
         let p1 = App.get().findById('paddle1');
