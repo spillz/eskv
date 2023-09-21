@@ -34,7 +34,7 @@
             new CheckBox({hints:checkHints}),
             new Label({text:'Main', fontName:'serif', align:'right'}),
             new CheckBox({hints:checkHints, check:true, 
-                on_check: (e,v)=>{for(let w of App.get().iterByPropertyValue('group','chkgrp')) w.disable=!v}
+                on_check: (e,o,v)=>{for(let w of App.get().iterByPropertyValue('group','chkgrp')) w.disable=!v}
             }),
             new Label({text:'Dessert', fontName:'serif', align:'right'}),
             new CheckBox({hints:checkHints}),

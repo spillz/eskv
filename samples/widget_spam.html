@@ -20,7 +20,7 @@
 <canvas id="canvas"></canvas> 
 
 <script type="module">
-    import  {App, Widget, Vec2, Button, random, math} from '../lib/eskv.js'; //Import ESKV objects
+    import  {App, Widget, Vec2, Button, rand, math} from '../lib/eskv.js'; //Import ESKV objects
 
     //We'll create a moving widget by augmenting the update loop to move widgets with fixed velocity
     class MovingWidget extends Widget {
@@ -48,10 +48,10 @@
     let but1 = wsDemo.findById('button1');
     let but2 = wsDemo.findById('button2');
     let frame = wsDemo.findById('frame');
-    let r = random.randomFloat;
+    let r = rand.randomFloat;
 
     //Logic for button presses
-    but1.on_press = (e,v) => {
+    but1.on_press = (e,o,v) => {
         for(let i=0;i<100;i++) {
             let x = r(0.1,0.9);
             let y = r(0.1,0.9)
@@ -64,7 +64,7 @@
             frame.addChild(w);
         }
     }
-    but2.on_press = (e,v) => {
+    but2.on_press = (e,o,v) => {
         frame.children = [];
     }
     //Start the app

@@ -29,13 +29,13 @@
         new BoxLayout({hints:{center_x:0.5,center_y:0.5,w:1,h:1}, children: [
             new Label({text:'Modal Popup', hints:{center_x:0.5,w:1,h:0.5}}),
             new Button({text:'Close', hints:{center_x:0.5,w:0.5,h:0.5},
-                on_press:(e,v)=>App.get().findById('mv').close()}),
+                on_press: (e, o, v)=>App.get().findById('mv').close()}),
         ]})
     ]})
     mvDemo.baseWidget.children = [  
         //Adds a Button with an on_press property that responds to the buttons press event
         new Button({text:'Click me', hints:{center_x:0.5,center_y:0.75,w:0.5,h:0.1},
-            on_press: (e,v)=>mv.popup()
+            on_press: (e, o, v)=>mv.popup()
             }),
         //Adds a Label
         new Label({text:'Hello, World', id:'label', hints:{center_x:0.5,center_y:0.25,w:0.5,h:0.1}}) 

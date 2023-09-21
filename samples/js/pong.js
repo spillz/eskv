@@ -95,13 +95,13 @@ class Ball extends Widget {
 
 class Paddle extends Widget {
     lastTouch = null;
-    on_touch_down(event, touch) { //Like kivy's on_touch methods, handles both mouse and touch interaction
+    on_touch_down(event, object, touch) { //Like kivy's on_touch methods, handles both mouse and touch interaction
         if(this.rect.scale(5).collide(touch.rect)) { //touch movement of the paddle is allowed anywhere in the vicinity of the paddle
             this.lastTouch = touch;
         }
         return false;
     }
-    on_touch_move(event, touch) {
+    on_touch_move(event, object, touch) {
         if(this.rect.scale(5).collide(touch.rect)) {
             if(this.lastTouch!==null) {
                 // @ts-ignore

@@ -198,7 +198,7 @@ export declare interface ScrollViewProperties extends WidgetProperties {
     /** how to align content horizontally if horizontal scrolling disallowed, default = 'center'*/
     wAlign?:'left'|'center'|'right',
     /*how to align content vertically if vertical scrolling disallowed, default = 'middle'*/ 
-    hAlign:'top'|'middle'|'bottom', 
+    hAlign?:'top'|'middle'|'bottom', 
     /** zooming allowing via user input if true (pinch to zoom), default = true  */
     uiZoom?:boolean,
     /** zoom ratio (1=no zoom, <1 zoomed out, >1 zoomed in), default = 1 */
@@ -213,9 +213,9 @@ export declare interface ScrollViewProperties extends WidgetProperties {
 
 export declare interface ModalViewProperties extends WidgetProperties {
     /** If true, click or touch outside the modal rect will close the modal */
-    closeOnTouchOutside:boolean,
+    closeOnTouchOutside?:boolean,
     /** If true, darken the entire canvas behind the modal*/
-    dim:boolean,
+    dim?:boolean,
     /**Amount of canvas dimming applied (0 = none => 1 = opaque, i.e., blacks out background), default = 0.8*/
-    dimScale:number,
+    dimScale?:number,
 }
