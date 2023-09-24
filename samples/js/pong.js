@@ -12,7 +12,8 @@ import  {App, Widget, Label, Vec2, math} from '../../lib/eskv.js'; //Import ESKV
  * will be populated in dimW and dimH representing size of the window in the native 
  * units of the app. That will then be used to set geometry for widgets that are 
  * added to the App. There is also an associated tileSize representing the number of 
- * physical pixels per logical units. 
+ * physical pixels in each direction of a square tile (i.e., tiles are the logical 
+ * measurement unit). 
  */
 class Pong extends App { 
     prefDimW = 20; //preferred logical width

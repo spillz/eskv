@@ -85,7 +85,7 @@ export declare interface ButtonProperties extends LabelProperties {
     /** text color when disabled, = colorString([0.4,0.4,0.4])*/
     disableColor2?:string,
     /** disabled if true and cannot be interacted with, otherwise enabled, default = false;*/
-    disable?:string,
+    disable?:boolean|CallbackProperty<boolean>,
 }
 
 export declare interface CheckBoxProperties extends WidgetProperties {
@@ -98,7 +98,7 @@ export declare interface CheckBoxProperties extends WidgetProperties {
     /** check color when disabled, default  = colorString([0.4,0.4,0.4])*/
     disableColor2?:string,
     /**widget is disabled and cannot be interact with if true,  default = false;*/
-    disable?:string,
+    disable?:boolean|CallbackProperty<boolean>,
 }
 
 export declare interface SliderProperties extends WidgetProperties {
@@ -113,7 +113,7 @@ export declare interface SliderProperties extends WidgetProperties {
     /** Color of groove when slider enabled*/
     disableColor2?:string,
     /** Set to true to disable interaction*/
-    disable?:string,
+    disable?:boolean|CallbackProperty<boolean>,
     /** The position of the slider, default = 0.0;*/
     value?:number|CallbackProperty<number>,
     /** Min value of slider, default = 0.0*/
