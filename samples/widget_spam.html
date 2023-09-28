@@ -25,8 +25,8 @@
     //We'll create a moving widget by augmenting the update loop to move widgets with fixed velocity
     class MovingWidget extends Widget {
         vel = new Vec2([0,0]); //add a velocity property
-        update(millis) {
-            super.update(millis); //make sure to call super or the widget will be broken
+        update(app, millis) {
+            super.update(app, millis); //make sure to call super or the widget will be broken
             // Now move the widget and bounce off walls defined by the parent.
             this.x=math.clamp(this.x+this.vel.x*millis, this.parent.x, this.parent.right-this.w);
             this.y=math.clamp(this.y+this.vel.y*millis, this.parent.y, this.parent.bottom-this.h);

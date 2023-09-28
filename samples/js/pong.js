@@ -38,18 +38,16 @@ class Pong extends App {
 class Ball extends Widget {
     vel = new Vec2([0,0]); //velocity property
     stopped = true;
-    draw() { //drawing with native 
-        let ctx = App.get().ctx; //the canvas context object is saved in the ctx property. Note that App is a singleton class
-        if(!ctx) return;
+    draw(app, ctx) { //drawing with native 
         ctx.fillStyle = 'yellow';
         ctx.beginPath();
         ctx.arc(this.center_x, this.center_y, this.w/2, 0, 2*Math.PI);
         ctx.fill();
     }
-    update(millis) { 
+    update(app, millis) { 
         //all widgets have an update loop that you can override 
         //(rarely needed in most apps) but definitely call super
-        super.update(millis);
+        super.update(app, millis);
         if(this.vel.abs().sum()===0) {
             this.reset();
         }
