@@ -5,11 +5,13 @@ ESKV Todo list
 
  * Slider: support infinite bounds (scroll to a max multiple of current value, then reset the max multiple).
 
- * Bug: TextInput positioning in ScrollView is not synched properly (should show DOM TextInput over the text label).
+ * Bug: TextInput positioning in ScrollView is not synched properly (should show DOM TextInput over the text label). [DONE 9/28/23]
 
- * App and Context instances should be passed to draw function. [DONE 9/27]
+ * Implement matrix transforms [DONE 9/28/23]
 
- * App instance should be pass as arg to update function. [DONE 9/27]
+ * App and Context instances should be passed to draw function. [DONE 9/27/23]
+
+ * App instance should be pass as arg to update function. [DONE 9/27/23]
 
  * Add a a property to App (realTimeMode or forceRefresh) so that 
    draw/update methods only trigger as needed (on Touch/Wheel/Mouse/KB/
