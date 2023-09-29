@@ -119,7 +119,13 @@ export declare interface SliderProperties extends WidgetProperties {
     /** Min value of slider, default = 0.0*/
     min?:number|CallbackProperty<number>,
     /** Max value of slider, default = 1.0*/
-    max?:number|CallbackProperty<number>,
+    max?:number|null|CallbackProperty<number|null>,
+    /** Max value of slider, default = 1.0*/
+    curMax?:number|CallbackProperty<number>,
+    /**for unbounded slider sets `curMax` equal to this multiple of the current value after each slider release*/
+    unboundedStopMultiple?:number;
+    /**if true, the slider operates on an exponential scale -- NOT IMPLEMENTED YET */
+    exponentialSlider?:boolean;
     /**  Step increment of slider, continuous if null, default = null;*/
     step?:number|CallbackProperty<number>,
     /** Orientation of slider, default = 'horizontal';*/
