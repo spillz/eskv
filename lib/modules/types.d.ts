@@ -188,27 +188,33 @@ export declare interface GridLayoutProperties extends WidgetProperties {
 
 export declare interface ScrollViewProperties extends WidgetProperties {
     /** desired x-axis scrolling position measured from left of client area in client area units, default = 0 */
-    scrollX?:number,
+    scrollX?:number|CallbackProperty<number>,
     /** desired y-axis scrolling position measured from top of client area in client area units, default = 0 */
-    scrollY?:number,
+    scrollY?:number|CallbackProperty<number>,
     /** true if horizontal scrolling allowed, default = true */
-    scrollW?:boolean,
+    scrollW?:boolean|CallbackProperty<boolean>,
     /** true if vertical scrolling allowed, default = true */
-    scrollH?:boolean,
+    scrollH?:boolean|CallbackProperty<boolean>,
     /** how to align content horizontally if horizontal scrolling disallowed, default = 'center'*/
     wAlign?:'left'|'center'|'right',
     /*how to align content vertically if vertical scrolling disallowed, default = 'middle'*/ 
     hAlign?:'top'|'middle'|'bottom', 
     /** zooming allowing via user input if true (pinch to zoom), default = true  */
-    uiZoom?:boolean,
+    uiZoom?:boolean|CallbackProperty<boolean>,
     /** zoom ratio (1=no zoom, <1 zoomed out, >1 zoomed in), default = 1 */
-    zoom?:number,
+    zoom?:number|CallbackProperty<number>,
     /** tracks velocity of kinetic scrolling action, default = null */
     vel?:Vec2|null,
     /** vel is set to zero on an axis if the absolute velocity falls below this cutoff, default = 1e-5 */
     velCutoff?:number,
     /** velocity of kinetic motion, `vel`, declines by this decay ratio every 30ms, default = 0.95 */
     velDecay?:number,
+    /** if false, constrains the horizontal scrolling position to the confines of 
+     * the scrollable area (size of child), default false */
+    unboundedW?:boolean|CallbackProperty<boolean>;
+    /** if false, constrains the vertical scrolling position to the confines of 
+     * the scrollable area (size of child), default false */
+    unboundedH?:boolean|CallbackProperty<boolean>;
 }
 
 export declare interface ModalViewProperties extends WidgetProperties {
