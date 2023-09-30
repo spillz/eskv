@@ -1,11 +1,11 @@
 ESKV Todo list
 ==============
 
- * ScrollView infinite scroll option/expandable child option (and option to snap to child).
+ * ScrollView infinite scroll option/expandable child option (and option to snap to child). [DONE 9/29/23]
 
- * Slider: support infinite bounds (scroll to a max multiple of current value, then reset the max multiple).
+ * Slider: support infinite bounds (scroll to a max multiple of current value, then reset the max multiple). [DONE 9/29/23]
 
- * Bug: TextInput positioning in ScrollView is not synched properly (should show DOM TextInput over the text label). [DONE 9/28/23]
+ * Bug: TextInput positioning in ScrollView is not synched properly (should show DOM TextInput over the text label). [DONE 9/28/23, could be improved]
 
  * Implement matrix transforms [DONE 9/28/23]
 
@@ -15,7 +15,7 @@ ESKV Todo list
 
  * Add a a property to App (realTimeMode or forceRefresh) so that 
    draw/update methods only trigger as needed (on Touch/Wheel/Mouse/KB/
-   Timer/Animation events). This will conserve power usage.
+   Timer/Animation events). This will conserve power usage. [DONE 9/29/23]
 
  * Implement widget styling.
 
