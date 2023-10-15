@@ -101,6 +101,25 @@ export declare interface CheckBoxProperties extends WidgetProperties {
     disable?:boolean|CallbackProperty<boolean>,
 }
 
+export declare interface ToggleButtonProperties extends WidgetProperties {
+    /** check color, default = colorString([0.6,0.6,0.6])*/
+    color?:boolean,
+    /** background color when selected, default = colorString([0.7,0.7,0.8]);*/
+    selectColor?:string,
+    /** background color when disabled, default = colorString([0.2,0.2,0.2])*/
+    disableColor1?:string,
+    /** check color when disabled, default  = colorString([0.4,0.4,0.4])*/
+    disableColor2?:string,
+    /**widget is disabled and cannot be interact with if true,  default = false*/
+    disable?:boolean|CallbackProperty<boolean>,
+    /**press state of the button,  default = false*/
+    press?:boolean|CallbackProperty<boolean>,
+    /**press state of the button,  default = false*/
+    group?:null|string|CallbackProperty<null|string>,
+    /**if true, press state of only one widget in the group can be true, default = true*/
+    singleSelect?:boolean|CallbackProperty<boolean>,
+}
+
 export declare interface SliderProperties extends WidgetProperties {
     /** Color of groove*/
     bgColor?:string,
