@@ -17,9 +17,9 @@ export declare interface WidgetSizeHints {
     /**y coordinate (top) hint for the widget */
     y?:number|string,
     /**width hint for the widget */
-    w?:number|string,
+    w?:number|string|null,
     /**height hint for the widget */
-    h?:number|string,
+    h?:number|string|null,
     /**horizontal center point hint for the widget */
     center_x?:number|string,
     /**vertical center point hint for the widget */
@@ -192,6 +192,8 @@ export declare interface BoxLayoutProperties extends WidgetProperties {
     paddingY?:string|number,
     /** Direction that child widgets are arranged in the BoxLayout, default = 'vertical'*/
     orientation?:'vertical'|'horizontal',
+    /** Order that child widgets are arranged in the BoxLayout, default = 'forward'*/
+    order?:'forward'|'reverse',
 }
 
 export declare interface GridLayoutProperties extends WidgetProperties {
