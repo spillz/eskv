@@ -28,7 +28,7 @@
     imageDemo.baseWidget.children = [  
         //Adds a Button with an on_press property that responds to the buttons press event
         new Label({text:'Image example', fontName:'Serif', hints:{center_x:0.5,center_y:0.05,w:1.0,h:0.1}}),
-        new ScrollView({hints:{x:0.1, y:0.1, w:0.8, h:0.8}, children: [
+        new ScrollView({hints:{x:0.1, y:0.1, w:0.8, h:0.8}, wAlign:'center', children: [
             new ImageWidget({src:'./images/iss.jpg', outlineColor:'white', id:'image', hints:{w:null, h:null},
             angle: (angle)=>angle.value, antiAlias: (antialias)=>antialias.check })
         ]}),

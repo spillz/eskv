@@ -61,6 +61,8 @@ export declare interface WidgetProperties {
 export declare interface LabelProperties extends WidgetProperties {
     /**Height of the text of the label in logical units. If null it will be sized to fit the Label's bounding rect. */
     fontSize?: number|string|null,
+    /**All labels in the same sizeGroup will have their fontSize shrunk to the smallest of all Labels that are a member of this group.*/
+    sizeGroup?: string,
     /**The text displayed in the label. */
     text?: string|CallbackProperty<string>,
     /**String name of the font (uses standard fonts available to Canvas)*/
