@@ -59,24 +59,38 @@ export declare interface WidgetProperties {
 }
 
 export declare interface LabelProperties extends WidgetProperties {
-    /**Height of the text of the label in logical units. If null it will be sized to fit the Label's bounding rect. */
-    fontSize?: number|string|null,
-    /**All labels in the same sizeGroup will have their fontSize shrunk to the smallest of all Labels that are a member of this group.*/
+    /**
+     * Height of the text of the label in logical units. If null it will be sized to 
+     * fit the Label's bounding rect. default = null */
+    fontSize?: number|string|null|CallbackProperty<number|string|null>,
+    /**
+     * Sets the sizeGroup for the label. All labels in the same sizeGroup will have their 
+     * fontSize shrunk to the smallest of all Labels that are a member of this group. 
+     * default = '' (no group)*/
     sizeGroup?: string,
+    /**If clip is true, the text will be clipped to the bounding rect. defaut = false. */
+    clip?: boolean,
+    /**
+     * If ignoreSizeForGroup is true and this Label is part of a group,
+     * this Label's fontSize will not be used to set the fontSize for the group (useful
+     * in combination with clip to handle text that can be very long). default = false.*/
+    ignoreSizeForGroup?: boolean,
     /**The text displayed in the label. */
     text?: string|CallbackProperty<string>,
     /**String name of the font (uses standard fonts available to Canvas)*/
-    fontName?: string,
+    fontName?: string|CallbackProperty<string>,
     /**true to wrap the text to fit within the available width of the rect*/
-    wrap?: boolean,
-    /**true to wrap text at whole word boundaries otherwise wraps at character (has no effect if wrap is false)*/
-    wrapAtWord?: boolean,
+    wrap?: boolean|CallbackProperty<string>,
+    /**
+     * true to wrap text at whole word boundaries otherwise wraps at character (has 
+     * no effect if wrap is false)*/
+    wrapAtWord?: boolean|CallbackProperty<string>,
     /**horizontal alignment of text */
-    align?: 'left'|'center'|'right',
+    align?: 'left'|'center'|'right'|CallbackProperty<'left'|'center'|'right'>,
     /**vertical alignment of text */
-    valign?: 'top'|'middle'|'bottom',
+    valign?: 'top'|'middle'|'bottom'|CallbackProperty<'top'|'middle'|'bottom'>,
     /**color of the text */
-    color?: string,
+    color?: string|CallbackProperty<string>,
 }
 
 export declare interface ButtonProperties extends LabelProperties {
@@ -228,7 +242,7 @@ export declare interface ScrollViewProperties extends WidgetProperties {
     wAlign?:'left'|'center'|'right',
     /*how to align content vertically if vertical scrolling disallowed, default = 'middle'*/ 
     hAlign?:'top'|'middle'|'bottom', 
-    /** zooming allowing via user input if true (pinch to zoom), default = true  */
+    /** zooming is allowed via user input if true, default = true  */
     uiZoom?:boolean|CallbackProperty<boolean>,
     /** zoom ratio (1=no zoom, <1 zoomed out, >1 zoomed in), default = 1 */
     zoom?:number|CallbackProperty<number>,
