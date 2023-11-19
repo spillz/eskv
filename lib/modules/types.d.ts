@@ -104,6 +104,19 @@ export declare interface ButtonProperties extends LabelProperties {
     disable?:boolean|CallbackProperty<boolean>,
 }
 
+export declare interface BasicButtonProperties extends WidgetProperties {
+    /**color of the foreground */
+    color?: string|CallbackProperty<string>,
+    /** background color when selected, default = colorString([0.7,0.7,0.8]);*/
+    selectColor?:string|CallbackProperty<string>,
+    /** background color when disabled, default = colorString([0.2,0.2,0.2])*/
+    disableColor1?:string|CallbackProperty<string>,
+    /** text color when disabled, = colorString([0.4,0.4,0.4])*/
+    disableColor2?:string|CallbackProperty<string>,
+    /** disabled if true and cannot be interacted with, otherwise enabled, default = false;*/
+    disable?:boolean|CallbackProperty<boolean>,
+}
+
 export declare interface CheckBoxProperties extends WidgetProperties {
     /** check color, default = colorString([0.6,0.6,0.6])*/
     color?:boolean,
