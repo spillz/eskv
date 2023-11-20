@@ -1,6 +1,7 @@
 # ESKV
 
-ESKV is an experimental JavaScript widget library for the browser inspired by Kivy. 
+ESKV is an experimental JavaScript widget library for the browser inspired by Kivy
+(and to some extent intended to inspire Kivy itself). 
 It is built on EcmaScript 6 and the Html5 Canvas. Like Kivy, ESKV lets you rapidly 
 build apps with rich user experiences that consolidate mouse and touch friendly 
 controls into one simple interface and, unlike Kivy, run directly in the browser on 
