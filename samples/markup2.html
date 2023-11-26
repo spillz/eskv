@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<title>ESKV Markup Example (Part II)</title>
+
+<!-- The CSS in the style tag is used to set a black background and maximize available client space for the canvas-->
+<style> 
+    body{
+        background-color: rgb(0, 0, 0);
+        text-align: center;
+    }
+    html, body, canvas {
+    margin: 0 !important;
+    padding: 0 !important;
+    position: absolute;
+    top:0;
+    left:0;
+    }
+</style>
+
+<!-- IMPORTANT: The ESKV App draws to a canvas that must be ID'd as canvas-->
+<canvas id="canvas"></canvas> 
+
+<script type="module">
+    //@ts-check
+    import * as eskv from '../lib/eskv.js';
+    import { parse } from '../lib/modules/markup.js';
+
+    const markup = `
+<RedButton@Button>:
+    bgColor: 'rgba(180,0,0,1)'
+    pressColor: 'rgba(255,0,0,1)'
+    sizeGroup: 'buttonText'
+
+<RedToggleButton@ToggleButton>:
+    bgColor: 'rgba(180,0,0,1)'
+    pressColor: 'rgba(255,0,0,1)'
+    sizeGroup: 'buttonText'
+
+App:
+    BoxLayout:
+        orienation: 'vertical'
+        spacingY: '0.1ah'
+        hints: {center_x:0.5, center_y:0.5, w:0.5, h:0.9}
+        Label:
+            text: 'label'
+        RedButton:
+            text: 'button'
+            on_press: root.findById('rb').bgColor = 'rgba(0,0,255,1)'
+        RedToggleButton:
+            id: 'rb'
+            text: 'toggle button'
+`
+
+    const app = parse(markup)[0];
+
+    //Start the app
+    app.start();
+
+</script>
