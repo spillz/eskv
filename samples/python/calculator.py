@@ -5,7 +5,8 @@ from kivy.lang import Builder
 
 
 kv_layout = '''
-
+<CalcButton@Button>:
+    font_size: 0.3*self.height
 
 FloatLayout:
     BoxLayout:
@@ -19,68 +20,67 @@ FloatLayout:
             Label:
                 id: display
                 text: ''
+                font_size: '40 dp'
         GridLayout:
             rows: 5
             cols: 4
-            Button:
+            CalcButton:
                 text: 'DEL'
                 on_press: display.text = display.text[:-1]
-            Button:
+            CalcButton:
                 text: 'CE'            
                 on_press: display.text = ''
-            Button:
+            CalcButton:
                 text: '^'            
-                on_press: display.text = display.text+self.text
-
-            Button:
+            CalcButton:
                 text: '/'            
                 on_press: display.text = display.text+self.text
-            Button:
+            CalcButton:
                 text: '7'            
                 on_press: display.text = display.text+self.text
-            Button:
+            CalcButton:
                 text: '8'            
                 on_press: display.text = display.text+self.text
-            Button:
+            CalcButton:
                 text: '9'            
                 on_press: display.text = display.text+self.text
-            Button:
+            CalcButton:
                 text: 'X'            
                 on_press: display.text = display.text+self.text
-            Button:
+            CalcButton:
                 text: '4'            
                 on_press: display.text = display.text+self.text
-            Button:
+            CalcButton:
                 text: '5'            
                 on_press: display.text = display.text+self.text
-            Button:
+            CalcButton:
                 text: '6'            
                 on_press: display.text = display.text+self.text
-            Button:
+            CalcButton:
                 text: '-'
                 on_press: display.text = display.text+self.text
-            Button:
+            CalcButton:
                 text: '1'
                 on_press: display.text = display.text+self.text
-            Button:
+            CalcButton:
                 text: '2'            
                 on_press: display.text = display.text+self.text
-            Button:
+            CalcButton:
                 text: '3'            
                 on_press: display.text = display.text+self.text
-            Button:
+            CalcButton:
                 text: '+'            
                 on_press: display.text = display.text+self.text
-            Button:
+            CalcButton:
                 text: '+/-'            
-                on_press: display.text=app.calc('-('display.text')')
-            Button:
+                on_press: display.text=app.calc('-('+display.text+')')
+            CalcButton:
                 text: '0'
                 on_press: display.text = display.text+self.text
-            Button:
+            CalcButton:
                 text: '.'            
                 on_press: display.text = display.text+self.text
-            Button:
+            CalcButton:
                 text: '='                        
                 on_press: display.text=app.calc(display.text)
 
