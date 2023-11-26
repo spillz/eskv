@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<title>ESKV Calculator Demo (Markup Example)</title>
+
+<!-- The CSS in the style tag is used to set a black background and maximize available client space for the canvas-->
+<style> 
+    body{
+        background-color: rgb(0, 0, 0);
+        text-align: center;
+    }
+    html, body, canvas {
+    margin: 0 !important;
+    padding: 0 !important;
+    position: absolute;
+    top:0;
+    left:0;
+    }
+</style>
+
+<!-- IMPORTANT: The ESKV App draws to a canvas that must be ID'd as canvas-->
+<canvas id="canvas"></canvas> 
+
+<script type="module">
+    import * as eskv from '../lib/eskv.js';
+    import { parse, classes } from '../lib/modules/markup.js';
+
+    //Code for a rounded rect
+    function roundedRectPath(ctx, x, y, width, height, radius) {
+        ctx.beginPath();
+        ctx.moveTo(x + radius, y);
+        ctx.lineTo(x + width - radius, y);
+        ctx.quadraticCurveTo(x + width, y, x + width, y + radius);
+        ctx.lineTo(x + width, y + height - radius);
+        ctx.quadraticCurveTo(x + width, y + height, x + width - radius, y + height);
+        ctx.lineTo(x + radius, y + height);
+        ctx.quadraticCurveTo(x, y + height, x, y + height - radius);
+        ctx.lineTo(x, y + radius);
+        ctx.quadraticCurveTo(x, y, x + radius, y);
+        ctx.closePath();
+    }
+
+    //Create buttons and a "display" that extend Button and Label widgets to
+    //override the draw methods to clip the drawn region to rounded rects
+    //Property styling is deferred to the markup
+    class CalcButton extends eskv.Button {
+        draw(app, ctx) {
+            roundedRectPath(ctx, this.x, this.y, this.w, this.h, this.radius*Math.min(this.w,this.h));
+            ctx.save();
+            ctx.clip();
+            super.draw(app, ctx);
+            ctx.restore();
+        }
+    }
+
+    class Display extends eskv.Label {
+        draw(app, ctx) {
+            roundedRectPath(ctx, this.x, this.y, this.w, this.h, this.radius*Math.min(this.w,this.h));
+            ctx.save();
+            ctx.clip();
+            super.draw(app, ctx);
+            ctx.restore();
+        }
+    }
+
+    //For now you have to register all classes that you access in markup
+    classes['CalcButton'] = [CalcButton, {}, ''];
+    classes['Display'] = [Display, {}, ''];
+
+    //The markup specifies styles for the button and display and the overall UI layout in the App
+    const markup = `
+#Like Kivy, you can use python style comments
+
+#Also like Kivy, you can style existing widget classes
+<CalcButton>:
+    bgColor: 'rgba(128,128,100,1)'
+    selectColor: 'orange'
+    sizeGroup: 'buttonText'
+    radius: 0.3
+    on_press: app.findById('display').text = app.findById('display').text+this.text
+
+<Display>:
+    bgColor: 'rgba(140,240,120,1)'
+    color: 'rgba(100,140,90,1)'
+    radius: 0.2
+
+#And also defined a widget heirarchy
+App:
+    BoxLayout:
+        hints: {center_x: 0.5, center_y:0.5, h:1, w:'0.5ah'}
+        bgColor: 'rgba(245,245,220,1)'
+        orientation: 'vertical'
+        BoxLayout:
+            hints: {h:0.2}
+            paddingX: '0.03ah'
+            paddingY: '0.03ah'
+            spacingX: '0.01ah'
+            spacingY: '0.01ah'
+            Display:
+                id: 'display'
+                text: ''
+        GridLayout:
+            paddingX: '0.03ah'
+            paddingY: '0.03ah'
+            spacingX: '0.01ah'
+            spacingY: '0.01ah'
+            numY: 5
+            numX: 4
+            CalcButton:
+                text: 'DEL'
+                on_press: app.findById('display').text = app.findById('display').text.slice(0,-1)
+            CalcButton:
+                text: 'CE'            
+                on_press: app.findById('display').text = ''
+            CalcButton:
+                text: '^'            
+            CalcButton:
+                text: '/'            
+            CalcButton:
+                text: '7'            
+            CalcButton:
+                text: '8'            
+            CalcButton:
+                text: '9'            
+            CalcButton:
+                text: 'X'            
+            CalcButton:
+                text: '4'            
+            CalcButton:
+                text: '5'            
+            CalcButton:
+                text: '6'            
+            CalcButton:
+                text: '-'
+            CalcButton:
+                text: '1'
+            CalcButton:
+                text: '2'            
+            CalcButton:
+                text: '3'            
+            CalcButton:
+                text: '+'            
+            CalcButton:
+                text: '+/-'            
+                on_press: app.findById('display').text = app.calc('-('+app.findById('display').text+')');
+            CalcButton:
+                text: '0'
+            CalcButton:
+                text: '.'            
+            CalcButton:
+                text: '='                        
+                on_press: app.findById('display').text = app.calc(app.findById('display').text)
+    ## If we want to, and here we do, we can define methods in markup using arrow function syntax
+    calc:
+        (text) => { //To be recognized as a method, defined the arrow function on the first line of block markup
+            try {
+                return String(eval(text.replaceAll('X','*').replaceAll('^','**')))
+            } catch {
+                return "What are you doing Dave?"
+            }
+        }
+`
+
+    parse(markup);
+
+    //Start the app
+    eskv.App.get().start();
+
+</script>
