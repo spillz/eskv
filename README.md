@@ -8,7 +8,7 @@ controls into one simple interface and, unlike Kivy, run directly in the browser
 most modern devices.
 
 The goal of the ESKV project is to provide a glimpse of the potential of the Kivy 
-framework on the web and to scratch my personal itch of converting old Kivy desektop
+framework on the web and to scratch my personal itch of converting old Kivy desktop 
 and phone apps to equivalent webapps. If you're looking to quickly prototype
 a simple canvas-based User Interfaces, give it a try. But if you're looking to
 build real world webapps for paying clients you will want React, Svelte or dozens
@@ -24,5 +24,5 @@ cd eskv
 python3 -m http.server
 ```
 
-Open `0.0.0.0:8000/index.html` in your browser of choice. If you make changes to module code, 
+Open `localhost:8000/index.html` in your browser of choice. If you make changes to module code, 
 you may need to clear the browser's cache to see the updates.
