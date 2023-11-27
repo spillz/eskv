@@ -21,7 +21,7 @@
 
 <script type="module">
     import * as eskv from '../lib/eskv.js';
-    import { parse, classes } from '../lib/modules/markup.js';
+    import { parse } from '../lib/modules/markup.js';
 
     //Code for a rounded rect
     function roundedRectPath(ctx, x, y, width, height, radius) {
@@ -62,8 +62,8 @@
     }
 
     //For now you have to register all classes that you access in markup
-    classes['CalcButton'] = [CalcButton, {}, ''];
-    classes['Display'] = [Display, {}, ''];
+    eskv.App.registerClass('CalcButton', CalcButton, 'Button');
+    eskv.App.registerClass('Display', Display, 'Label');
 
     //The markup specifies styles for the button and display and the overall UI layout in the App
     const markup = `
