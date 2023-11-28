@@ -137,16 +137,12 @@ App:
             CalcButton:
                 text: 'ANS'
                 on_press:
-                    console.log('Pressed', this.text);
                     const answer = app.findById('answer');                    
                     const question = app.findById('question');
                     const score = app.findById('score');
-                    console.log('Answered', answer.text, answer.state);
                     if(question.state==='unanswered') {
-                        console.log('Unanswered branch');
                         if(answer.text==='') return; 
                         const val = app.calc(answer.text);
-                        console.log(val);
                         const correct = val===app.questions[app.questionNum][2];
                         answer.state = correct?'correct':'wrong';
                         question.state = correct?'correct':'wrong';
