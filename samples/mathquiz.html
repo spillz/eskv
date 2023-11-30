@@ -154,11 +154,16 @@ App:
                         question.text = ''+qData[0]+'^'+qData[1]+' = '+qData[2];
                         this.text = 'OK';                    
                     } else {
+                        if(app.questionNum>=app.questions.length-1) {
+                            this.text = '--';
+                            return;
+                        }
                         app.questionNum = app.questionNum+1;
-                        answer.state = 'unanswered';
-                        if(app.questionNum>=app.questions.length) return;
-                        question.state = 'unanswered';
-                        this.text = 'ANS';
+                        if(app.questionNum<app.questions.length) {
+                            answer.state = 'unanswered';
+                            question.state = 'unanswered';
+                            this.text = 'ANS';
+                        }
                     }
             CalcButton:
                 text: '7'
@@ -216,7 +221,7 @@ App:
     }
 
     parse(markup);
-    app.questions = eskv.rand.shuffle(questions);//.slice(0,10);
+    app.questions = eskv.rand.shuffle(questions).slice(0,2);
     app.questionNum = app.questionNum+1;
     //Start the app
     app.start();
