@@ -221,7 +221,7 @@ App:
     }
 
     parse(markup);
-    app.questions = eskv.rand.shuffle(questions).slice(0,2);
+    app.questions = eskv.rand.shuffle(questions);
     app.questionNum = app.questionNum+1;
     //Start the app
     app.start();
