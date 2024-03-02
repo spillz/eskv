@@ -210,6 +210,20 @@ export declare interface ImageWidgetProperties extends WidgetProperties {
     mirror?:boolean,
 }
 
+export declare interface NotebookProperties extends WidgetProperties {
+    /**Active page of the notebook */
+    activePage?: number,
+}
+
+export declare interface TabbedNotebookProperties extends BoxLayoutProperties {
+    /**Vertical space devoted to the notebook tabs */
+    tabHeightHint?: string|number
+    /**Tabs of the notebook */
+    buttonBox?: BoxLayout,
+    /**Object containing the pages of the notebook */
+    notebook?: Notebook,
+}
+
 export declare interface BoxLayoutProperties extends WidgetProperties {
     /** Horizontal spacing between widgets in a horizontal orientation, default = 0*/
     spacingX?:string|number,
