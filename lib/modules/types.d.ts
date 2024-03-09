@@ -271,6 +271,8 @@ export declare interface ScrollViewProperties extends WidgetProperties {
     hAlign?:'top'|'middle'|'bottom', 
     /** zooming is allowed via user input if true, default = true  */
     uiZoom?:boolean|CallbackProperty<boolean>,
+    /** scrolling is allowed via user input if true, default = true  */
+    uiMove?:boolean|CallbackProperty<boolean>,
     /** zoom ratio (1=no zoom, <1 zoomed out, >1 zoomed in), default = 1 */
     zoom?:number|CallbackProperty<number>,
     /** tracks velocity of kinetic scrolling action, default = null */
