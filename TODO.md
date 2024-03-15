@@ -1,10 +1,18 @@
 ESKV Todo list
 ==============
 
+ * Optionally put the needed html elements for App into the DOM so that user does not need 
+    to provide anything more than a "<body>"
+
+ * Support for multiple apps on a single html page. Could use the window global to attach an `apps` 
+   object to so that app does not need to be passed to every single widget method for the
+   handful that need access to the app
+
  * Implement widget styling [mostly done, just verify it can be used effectively]
 
  * Look into use JavaScript's bind and event system for the event handling wiring between widgets 
-   (I would imagine it better takes advantage of JIT optimization but could be wrong).
+   (I would imagine it better takes advantage of JIT optimization but could be wrong). Could help
+   with automated cleanup of events when widgets are removed from an app chain
 
  * Investigate DOM and WebGL as targets. See https://stackoverflow.com/questions/40923507/is-there-a-way-to-get-webgl-to-render-offscreen-without-the-webgl-canvas-attach
 
@@ -35,6 +43,9 @@ ESKV Todo list
  * Sprite-based Widgets need more layout options to fill assigned canvas space
 
  * Use something more intuitive with child-determined size hint than "null"
+
+ * Cleanup default widget styling (e.g., button, notebook tabs, fonts for Label should use
+  modernfontstacks.com)
 
  * Integrate efficient pathfinding and line of sight algos into TileMap
 
@@ -133,6 +144,9 @@ ESKV Todo list
         ([age, name] = MinHeap.pop(heap));
         console.log(`Next is ${name} with ${age} years`);
       ```
+
+  * Low-level implementation in something like Raylib (ESKV as fully fledged standalone GUI
+    language)
 
 Completed
 =========
