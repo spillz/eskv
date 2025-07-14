@@ -27,14 +27,14 @@
     //Add widgets by setting the children property of the baseWidget (you can alternatively call addChild)
     blDemo.baseWidget.children = [  
         //Adds 2 Buttons
-        new Button({text:'Add Widget', id:'butadd', hints:{center_x:0.2,center_y:0.05,w:0.25,h:0.05}, sizeGroup:'header'}),
-        new Button({text:'Clear', id:'butclear', hints:{center_x:0.5,center_y:0.05,w:0.25,h:0.05}, sizeGroup:'header'}),
-        new Button({text:'Vertical', id:'butorient', hints:{center_x:0.8,center_y:0.05,w:0.25,h:0.05}, sizeGroup:'header'}),
-        new Slider({id:'padx', orientation:'horizontal', min:0.0, max:2.0, hints:{x:0.1,center_y:0.15,w:0.15,h:0.05}}),
-        new Slider({id:'pady', orientation:'vertical', min:0.0, max:2.0, hints:{x:0.05,y:0.2,w:0.05,h:0.2}}),
-        new Slider({id:'spacerx', orientation:'horizontal', min:0.0, max:2.0, hints:{center_x:0.5,center_y:0.15,w:0.15,h:0.05}}),
-        new Slider({id:'spacery', orientation:'vertical', min:0.0, max:2.0, hints:{x:0.05,center_y:0.7,w:0.05,h:0.2}}),
-        new BoxLayout({orientation:'vertical', outlineColor:'gray', id:'boxlayout', hints:{center_x:0.5,y:0.2,w:0.8,h:0.8},
+        Button.a({text:'Add Widget', id:'butadd', hints:{center_x:0.2,center_y:0.05,w:0.25,h:0.05}, sizeGroup:'header'}),
+        Button.a({text:'Clear', id:'butclear', hints:{center_x:0.5,center_y:0.05,w:0.25,h:0.05}, sizeGroup:'header'}),
+        Button.a({text:'Vertical', id:'butorient', hints:{center_x:0.8,center_y:0.05,w:0.25,h:0.05}, sizeGroup:'header'}),
+        Slider.a({id:'padx', orientation:'horizontal', min:0.0, max:2.0, hints:{x:0.1,center_y:0.15,w:0.15,h:0.05}}),
+        Slider.a({id:'pady', orientation:'vertical', min:0.0, max:2.0, hints:{x:0.05,y:0.2,w:0.05,h:0.2}}),
+        Slider.a({id:'spacerx', orientation:'horizontal', min:0.0, max:2.0, hints:{center_x:0.5,center_y:0.15,w:0.15,h:0.05}}),
+        Slider.a({id:'spacery', orientation:'vertical', min:0.0, max:2.0, hints:{x:0.05,center_y:0.7,w:0.05,h:0.2}}),
+        BoxLayout.a({orientation:'vertical', outlineColor:'gray', id:'boxlayout', hints:{center_x:0.5,y:0.2,w:0.8,h:0.8},
                 //wire padding and spacing to the sliders
                 paddingX:(padx)=>padx.value, 
                 paddingY:(pady)=>pady.value, 
@@ -50,7 +50,7 @@
     //Wire up the buttons to make adjustments to the BoxLayout
     butadd.on_press = (e,v)=> {
         let color = math.colorString(math.MathArray.asRandomFloats(3,0,0.9));
-        let w = new Label({text:'Label_'+bl.children.length.toString(), bgColor:color});
+        let w = Label.a({text:'Label_'+bl.children.length.toString(), bgColor:color});
         bl.addChild(w);
     }
 

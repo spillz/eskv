@@ -34,22 +34,22 @@ qui officia deserunt mollit anim id est laborum.`.replaceAll('\n',' ');
     //Add widgets by setting the children property of the baseWidget (you can alternatively call addChild)
     labelDemo.baseWidget.children = [  
         //Adds a Header
-        new Label({text:'Lorem Ipsum', bgColor:'#CC7722', hints:{center_x:0.5,y:0,w:0.5,h:0.15}}),
+        Label.a({text:'Lorem Ipsum', bgColor:'#CC7722', hints:{center_x:0.5,y:0,w:0.5,h:0.15}}),
         //Adds a left caption
-        new Label({text:'Lorem', outlineColor:'gray', color:'yellow', align:'left', valign:'top', hints:{x:0,y:0,w:0.1,h:1}}),
+        Label.a({text:'Lorem', outlineColor:'gray', color:'yellow', align:'left', valign:'top', hints:{x:0,y:0,w:0.1,h:1}}),
         //Adds a right caption
-        new Label({text:'Ipsum', outlineColor:'gray', color:'orange', align:'right', valign:'bottom', hints:{right:1,y:0,w:0.1,h:1}}),
+        Label.a({text:'Ipsum', outlineColor:'gray', color:'orange', align:'right', valign:'bottom', hints:{right:1,y:0,w:0.1,h:1}}),
         //A body of wrapped text, centered
-        new Label({text:lorem, outlineColor:'gray', fontName:'Script', valign:'middle', wrap:true, hints:{center_x:0.5,y:0.2,w:0.7,h:0.7},
+        Label.a({text:lorem, outlineColor:'gray', fontName:'Script', valign:'middle', wrap:true, hints:{center_x:0.5,y:0.2,w:0.7,h:0.7},
             align: (left, center, right)=>left.check?'left':(center.check?'center':'right') }),
-        new BoxLayout({orientation:'horizontal', spacingX:0.2, hints: {center_x:0.5,center_y:0.95, w:0.5,h:0.05}, children: [
-            new Label({text:'Align:', align:'left', hints:{h:1}}),
-            new CheckBox({id:'left', check:true, group:'align', hints:{h:1, w:'1wh'}}),
-            new Label({text:'left', align:'left', hints:{h:1}}),
-            new CheckBox({id:'center', group:'align', hints:{h:1, w:'1wh'}}),
-            new Label({text:'center', align:'left', hints:{h:1}}),
-            new CheckBox({id:'right', group:'align', hints:{h:1, w:'1wh'}}),
-            new Label({text:'right', align:'left', hints:{h:1}}),
+        BoxLayout.a({orientation:'horizontal', spacingX:0.2, hints: {center_x:0.5,center_y:0.95, w:0.5,h:0.05}, children: [
+            Label.a({text:'Align:', align:'left', hints:{h:1}}),
+            CheckBox.a({id:'left', check:true, group:'align', hints:{h:1, w:'1wh'}}),
+            Label.a({text:'left', align:'left', hints:{h:1}}),
+            CheckBox.a({id:'center', group:'align', hints:{h:1, w:'1wh'}}),
+            Label.a({text:'center', align:'left', hints:{h:1}}),
+            CheckBox.a({id:'right', group:'align', hints:{h:1, w:'1wh'}}),
+            Label.a({text:'right', align:'left', hints:{h:1}}),
         ]})
     ]
     //Start the app

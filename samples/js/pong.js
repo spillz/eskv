@@ -1,6 +1,7 @@
 //@ts-check
 
 import  {App, Widget, Label, Vec2, math} from '../../lib/eskv.js'; //Import ESKV objects into an eskv namespace
+import { Touch } from '../../lib/modules/input.js';
 
 /**
  * The pong ESKV App.
@@ -22,15 +23,18 @@ class Pong extends App {
                 //if exactDimensions is true, otherwise one of those dimensions will be enlarged
                 //to fill as much of the canvas as possible
     integerTileSize = false; //shrinks tileSize to an integer height and width if true (only useful when displaying sprites in logical unit aligned widgets)
+
     constructor() {
         super();
         this._baseWidget.children = [ //the app has a baseWidget derived from Widget. Every object can have children, including widget
-            new Widget({w:0.5, hints:{center_x:0.5,y:0,h:1}, bgColor:'white'}), //white center line
-            new Label({id:'score', score1: 0, score2: 0, hints: {center_x:0.5,y:0,w:0.25,h:0.2}, //score
-                        text: (score)=>score.score1+'    '+score.score2}), //auto-binding properties!!
-            new Paddle({id: 'paddle1', y:0, h:3, w:0.5, hints:{x:0}, bgColor:'red'}),  //paddle1
-            new Paddle({id: 'paddle2', y:0, h:3, w:0.5, hints:{right:1}, bgColor:'blue'}), //paddle2
-            new Ball({id:'ball', w:1, h:1}) //ball
+            Widget.a({w:0.5, hints:{center_x:0.5,y:0,h:1}, bgColor:'white'}), //white center line
+            //Type hinting plus .p allows defining on new typed properties score1 and score2 onto a Label
+            /**@type {Label&{score1:number,score2:number}}*/
+            (Label.a({id:'score', hints: {center_x:0.5,y:0,w:0.25,h:0.2}})).p({score1: 0, score2: 0}).
+                d('text', (score)=>score['score1']+'    '+score['score2']), //auto-binding label text onto score1 and score2 properties!!
+            Paddle.a({id: 'paddle1', y:0, h:3, w:0.5, hints:{x:0}, bgColor:'red'}),  //paddle1
+            Paddle.a({id: 'paddle2', y:0, h:3, w:0.5, hints:{right:1}, bgColor:'blue'}), //paddle2
+            Ball.a({id:'ball', w:1, h:1}) //ball
         ];
     }
 }
@@ -38,12 +42,14 @@ class Pong extends App {
 class Ball extends Widget {
     vel = new Vec2([0,0]); //velocity property
     stopped = true;
+    /**@type {Widget['draw']} */
     draw(app, ctx) { //drawing with native 
         ctx.fillStyle = 'yellow';
         ctx.beginPath();
         ctx.arc(this.center_x, this.center_y, this.w/2, 0, 2*Math.PI);
         ctx.fill();
     }
+    /**@type {Widget['update']} */
     update(app, millis) { 
         //all widgets have an update loop that you can override 
         //(rarely needed in most apps) but definitely call super
@@ -93,6 +99,7 @@ class Ball extends Widget {
 }
 
 class Paddle extends Widget {
+    /**@type {Touch|null} */
     lastTouch = null;
     on_touch_down(event, object, touch) { //Like kivy's on_touch methods, handles both mouse and touch interaction
         if(this.rect.scale(5).collide(touch.rect)) { //touch movement of the paddle is allowed anywhere in the vicinity of the paddle
@@ -100,10 +107,10 @@ class Paddle extends Widget {
         }
         return false;
     }
+    /**@type {Widget['on_touch_down']} */
     on_touch_move(event, object, touch) {
         if(this.rect.scale(5).collide(touch.rect)) {
             if(this.lastTouch!==null) {
-                // @ts-ignore
                 this.y += touch.y - this.lastTouch.y;
             }
             this.lastTouch = touch;

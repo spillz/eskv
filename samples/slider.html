@@ -27,35 +27,35 @@
     let checkHints = {h:0.333, w:'1wh'};
     //Add widgets by setting the children property of the baseWidget (you can alternatively call addChild)
     slDemo.baseWidget.children = [  
-        new Label({text:'Sliders', fontName:'serif', align:'center', 
+        Label.a({text:'Sliders', fontName:'serif', align:'center', 
                     hints:{center_x:0.5, center_y:0.05, w:1, h:0.1} }),
 
         //HORIZONTAL
-        new Label({text:'HORIZONTAL', fontName:'serif', align:'center', 
+        Label.a({text:'HORIZONTAL', fontName:'serif', align:'center', 
             hints:{center_x:0.5, center_y:0.15, w:1, h:0.05} }),
         //horizontal continuous
-        new Label({text: 'continuous', align:'right', hints:{right:0.35, center_y: 0.2, h:0.05,w:0.3}}),
-        new Slider({orientation:'horizontal', id:'s1', hints:{center_x:0.5, center_y: 0.2, h:0.05,w:0.25}}),
-        new Label({text: (s1)=>s1.value.toFixed(2), align:'left', hints:{x:0.625, center_y: 0.2, h:0.05,w:0.2}}),
+        Label.a({text: 'continuous', align:'right', hints:{right:0.35, center_y: 0.2, h:0.05,w:0.3}}),
+        Slider.a({orientation:'horizontal', id:'s1', hints:{center_x:0.5, center_y: 0.2, h:0.05,w:0.25}}),
+        Label.a({text: (s1)=>s1.value.toFixed(2), align:'left', hints:{x:0.625, center_y: 0.2, h:0.05,w:0.2}}),
         //horizontal discrete
-        new Label({text: 'discrete', align:'right', hints:{right:0.35, center_y: 0.3, h:0.05,w:0.3}}),
-        new Slider({orientation:'horizontal', step:0.2, id:'s2', hints:{center_x:0.5, center_y: 0.3, h:0.05,w:0.25}}),
-        new Label({text: (s2)=>s2.value.toFixed(1), align:'left', hints:{x:0.625, center_y: 0.3, h:0.05,w:0.2}}),
+        Label.a({text: 'discrete', align:'right', hints:{right:0.35, center_y: 0.3, h:0.05,w:0.3}}),
+        Slider.a({orientation:'horizontal', step:0.2, id:'s2', hints:{center_x:0.5, center_y: 0.3, h:0.05,w:0.25}}),
+        Label.a({text: (s2)=>s2.value.toFixed(1), align:'left', hints:{x:0.625, center_y: 0.3, h:0.05,w:0.2}}),
         //horizontal disabled
-        new Label({text: 'disabled', align:'right', hints:{right:0.35, center_y: 0.4, h:0.05,w:0.3}}),
-        new Slider({orientation:'horizontal', value:0.7, disable:true, hints:{center_x:0.5, center_y: 0.4, h:0.05,w:0.25}}),
+        Label.a({text: 'disabled', align:'right', hints:{right:0.35, center_y: 0.4, h:0.05,w:0.3}}),
+        Slider.a({orientation:'horizontal', value:0.7, disable:true, hints:{center_x:0.5, center_y: 0.4, h:0.05,w:0.25}}),
 
         //VERTICAL
-        new Label({text:'VERTICAL', fontName:'serif', align:'center', 
+        Label.a({text:'VERTICAL', fontName:'serif', align:'center', 
                     hints:{center_x:0.5, center_y:0.55, w:1, h:0.05} }),
         //vertical continuous
-        new Slider({orientation:'vertical', id:'s3', hints:{center_x:0.25, y: 0.6, h:0.3,w:0.25}}),
-        new Label({text: (s3)=>s3.value.toFixed(2), hints:{center_x:0.25, y: 0.9, h:0.05,w:0.2}}),
+        Slider.a({orientation:'vertical', id:'s3', hints:{center_x:0.25, y: 0.6, h:0.3,w:0.25}}),
+        Label.a({text: (s3)=>s3.value.toFixed(2), hints:{center_x:0.25, y: 0.9, h:0.05,w:0.2}}),
         //vertical discrete
-        new Slider({orientation:'vertical', step:0.1, id:'s4', hints:{center_x:0.5, y: 0.6, h:0.3,w:0.25}}),
-        new Label({text: (s4)=>s4.value.toFixed(1), hints:{center_x:0.5, y: 0.9, h:0.05,w:0.2}}),
+        Slider.a({orientation:'vertical', step:0.1, id:'s4', hints:{center_x:0.5, y: 0.6, h:0.3,w:0.25}}),
+        Label.a({text: (s4)=>s4.value.toFixed(1), hints:{center_x:0.5, y: 0.9, h:0.05,w:0.2}}),
         //vertical disabled
-        new Slider({orientation:'vertical', value:0.5, disable:true, hints:{center_x:0.75, y: 0.6, h:0.3,w:0.25}}),
+        Slider.a({orientation:'vertical', value:0.5, disable:true, hints:{center_x:0.75, y: 0.6, h:0.3,w:0.25}}),
     ]
     //Start the app
     slDemo.start();

@@ -1,3 +1,19 @@
+
+export type GlobalStaticFactory = <C extends new () => any>(
+  klass: C,
+  arg1: string | (Partial<InstanceType<C>> & { id?: string }),
+  arg2?: Partial<InstanceType<C>> & { id?: string }
+) => InstanceType<C>;
+
+export type WidgetFactory = {
+  new (): any;
+  static a<T extends WidgetFactory>(
+    this: T,
+    arg1: string | (Partial<InstanceType<T>> & { id?: string }),
+    arg2?: Partial<InstanceType<T>> & { id?: string } | undefined
+  ): InstanceType<T>;
+};
+
 export type CallbackProperty<T> = (...args:any)=>T;
 
 /**
@@ -28,6 +44,10 @@ export declare interface WidgetSizeHints {
     bottom?:number|string,
     /**rightmost position hint for the widget */
     right?:number|string,
+    /**fontSize (NOT IMPLEMENTED) */
+    fontSize?:number|string,
+    /**lineWidth */
+    lineWidth?:number|string,
 }
 
 /**Properties passed to the Widget constructor are optional and will be set to a default

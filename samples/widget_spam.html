@@ -40,9 +40,9 @@
     //Add widgets by setting the children property of the baseWidget (you can alternatively call addChild)
     wsDemo.baseWidget.children = [  
         //Adds 2 Buttons
-        new Button({text:'Add 100 Widgets', wrap:true, hints:{center_x:0.25,y:0,w:0.4,h:0.1}, id:'button1', sizeGroup:'spam'}),
-        new Button({text:'Clear', wrap:true, hints:{center_x:0.75,y:0,w:0.4,h:0.1}, id:'button2', sizeGroup:'spam'}),
-        new Widget({hints:{center_x:0.5,y:0.1,w:1,h:0.9}, id:'frame'}),
+        Button.a({text:'Add 100 Widgets', wrap:true, hints:{center_x:0.25,y:0,w:0.4,h:0.1}, id:'button1', sizeGroup:'spam'}),
+        Button.a({text:'Clear', wrap:true, hints:{center_x:0.75,y:0,w:0.4,h:0.1}, id:'button2', sizeGroup:'spam'}),
+        Widget.a({hints:{center_x:0.5,y:0.1,w:1,h:0.9}, id:'frame'}),
     ]
     // Retrieve widgets so we can wire up some button logic
     let but1 = wsDemo.findById('button1');
@@ -57,7 +57,7 @@
             let y = r(0.1,0.9)
             let size = r(1,2);
             let color = math.colorString([r(), r(), r()]);
-            let w = new MovingWidget({bgColor: color, w:size, h:size, x:frame.x+frame.w*x, y:frame.y+frame.h*y})
+            let w = MovingWidget.a({bgColor: color, w:size, h:size, x:frame.x+frame.w*x, y:frame.y+frame.h*y})
             let dx = Math.random()>0.5?Math.random()*0.5+0.5:-Math.random()*0.5-0.5
             let dy = Math.random()>0.5?Math.random()*0.25+0.25:-Math.random()*0.25-0.25
             w.vel = new Vec2([dx,dy]).scale(0.005);

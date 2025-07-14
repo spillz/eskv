@@ -34,11 +34,11 @@
     //Add widgets by setting the children property of the baseWidget (you can alternatively call addChild)
     tiDemo.baseWidget.children = [  
         //Adds a Header
-        new Label({text:'Text Inputs', hints:{center_x:0.5,center_y:0.25,w:0.5,h:0.1}}),
+        Label.a({text:'Text Inputs', hints:{center_x:0.5,center_y:0.25,w:0.5,h:0.1}}),
         //Adds a single line TextInput
-        new TextInput({text:'Touch to enter some text', bgColor:'#CC7722', hints:{center_x:0.5,center_y:0.5,w:0.5,h:0.1}}),
+        TextInput.a({text:'Touch to enter some text', bgColor:'#CC7722', hints:{center_x:0.5,center_y:0.5,w:0.5,h:0.1}}),
         //Adds a multiline TextInput
-        new TextInput({text:'Touch to edit\nmultiline text', bgColor:'#002277',wrap:true, hints:{center_x:0.5,center_y:0.75,w:0.5,h:0.15}}),
+        TextInput.a({text:'Touch to edit\nmultiline text', bgColor:'#002277',wrap:true, hints:{center_x:0.5,center_y:0.75,w:0.5,h:0.15}}),
     ];
     //Start the app
     tiDemo.start();
