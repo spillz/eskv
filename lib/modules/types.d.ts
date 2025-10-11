@@ -71,6 +71,14 @@ export declare interface WidgetProperties {
     bgColor?:string|null|CallbackProperty<string>,
     /**Color of the outline drawn around widget's bounding rect, no outline if null */
     outlineColor?:string|null|CallbackProperty<string>,
+    /**When true the widget will start focused*/
+    focus?:boolean|CallbackProperty<boolean>,
+    /**Whether the widget can receive focus*/
+    canFocus?:boolean|CallbackProperty<boolean>,
+    /**Color used for the focus outline when the widget has focus*/
+    focusOutlineColor?:string|CallbackProperty<string>,
+    /**Width of the focus outline when the widget has focus*/
+    focusOutlineWidth?:number|string|CallbackProperty<number|string>,
     /**Sizing hints that are used to automataically resize and/or reposition the widget as the parent's size or position changes */
     hints?:WidgetSizeHints,
     /**Array containing child Widgets (or Widget subclasses) of the Widget. You can set this in the constructor to attach children 
@@ -203,10 +211,10 @@ export declare interface SliderProperties extends WidgetProperties {
 }
 
 export declare interface TextInputProperties extends LabelProperties {
-    /** textinput currently has the focus if true, otherwise it does not have focus*/
-    focus?:boolean,
     /** when true, textinput cannot be interacted with, default = false*/
-    disabled?:boolean,
+    disable?:boolean|CallbackProperty<boolean>,
+    /** when true, the textinput starts in editing mode */
+    editing?:boolean|CallbackProperty<boolean>,
 }
 
 export declare interface ImageWidgetProperties extends WidgetProperties {
